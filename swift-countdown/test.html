@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        @import url(./fonts/stylesheet.css);
+
+        body {
+            animation: t 500ms linear infinite;
+        }
+
+        @keyframes t {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+            font-family: '2005_iannnnnAMD';
+            font-size: 32px;
+            overflow: hidden;
+            background-color: #fff9f8;
+            background: url("data:@file/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABgSURBVHgB7ZMxCsAwCEXVlMT7n7Y6aIlDh1KEhkAX3yIf5fEX0eV02ATBRkr2s+zIlmYGqhoTEYGZYy41E5EQTdw9ckYqm4Jn02UZEaX5k6z3fgtaazDGyM4B6zdL9s4FZ+EjC+LbO4QAAAAASUVORK5CYII=");
+            background-repeat: repeat;
+            background-size: 20px 20px;
+        }
+
+        #countdown-txt {
+            font-size: 150px;
+            margin: 0;
+            letter-spacing: 10px;
+            font-weight: normal;
+        }
+
+        .win-head {
+            background: #ffeae7;
+            box-shadow: 2px 2px 0px 0px #fff4f4 inset, 1px 1px 0px 0px #deaaaa inset, -2px -2px 0px 0px #5a4848 inset, -1px -1px 0px 0px #1a1111 inset, 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+            padding: 6px;
+            position: relative;
+            z-index: 20;
+        }
+
+        .title-bar {
+            background: linear-gradient(90deg, #F05138 0%, #ff9f90 100%);
+            color: #FFF;
+            font-size: 40px;
+            font-family: '2005_iannnnnAMD';
+            line-height: normal;
+            padding: 3px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+        }
+
+        .win-contents {
+            padding: 50px;
+            background-color: #F2F2F2;
+            box-shadow: -2px -2px 0px 0px #fff4f4 inset, -1px -1px 0px 0px #deaaaa inset, 2px 2px 0px 0px #574848 inset, 1px 1px 0px 0px #997c7c inset;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 550px;
+        }
+
+        .action-bar {
+            display: flex;
+            padding: 3px;
+            margin-top: 1px;
+        }
+
+        .ab-btn {
+            color: #766655;
+            font-family: '2005_iannnnnAMD';
+            font-size: 32px;
+            font-weight: 400;
+            line-height: normal;
+            background-color: transparent;
+            border: none;
+            padding: 0px 8px;
+            border: 2px dashed;
+            border-color: transparent;
+            transition: background-color 0.25s;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        .ab-btn:hover {
+            transition-duration: 0s;
+            background-color: #F2F2F2;
+            color: #557669;
+        }
+
+        .ab-btn:focus {
+            background-color: #F2F2F2;
+            border-color: #171F1C;
+        }
+
+        .btn {
+            border-radius: 0;
+            font-family: '2005_iannnnnAMD';
+            font-size: 32px;
+            line-height: 1;
+        }
+
+        .btn-primary,
+        .btn-primary:focus,
+        .btn-primary:focus-visible {
+            background-color: hsl(133, 23%, 85%);
+            color: black;
+            border: solid 2px transparent;
+            box-shadow: 2px 2px 0px 0px #F4FFF7 inset, 1px 1px 0px 0px #AADEC9 inset, -2px -2px 0px 0px #485A52 inset, -1px -1px 0px 0px #111A16 inset;
+            transition: none;
+
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform: scale(1);
+        }
+
+        .btn-primary:hover {
+            background-color: hsl(133, 23%, 90%) !important;
+            border-color: transparent !important;
+        }
+
+        .btn-primary:hover,
+        .btn-primary:active {
+            color: black !important;
+            border: none !important;
+        }
+
+        .btn-primary:active {
+            background-color: hsl(133, 23%, 80%) !important;
+            box-shadow: -2px -2px 0px 0px #F4FFF7 inset, 2px 2px 0px 0px #485A52 inset, -1px -1px 0px 0px #AADEC9 inset, 1px 1px 0px 0px #111A16 inset;
+        }
+
+        .btn-primary:focus-visible {
+            border: 2px dashed #485A52 !important;
+        }
+
+        .btn:active {
+            transition-duration: 0s, 0s;
+            transform: scale(0.9);
+        }
+
+        .flex-space {
+            flex-grow: 1;
+        }
+
+        .circle-grad {
+            position: fixed;
+            z-index: 0;
+            background: radial-gradient(50% 50% at 50% 50%, #ffb2a675 0%, rgba(255, 249, 248, 0.00) 100%);
+            width: 50vw;
+            height: 50vw;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="circle-grad"></div>
+    <div class="win-head mt-3">
+        <div class="title-bar">
+            <svg width="30" height="15" viewBox="0 0 46 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M42.0605 28.6607C42.0591 28.6589 42.0578 28.6576 42.0563 28.6559C42.122 28.4323 42.1898 28.2101 42.2473 27.9809C44.7123 18.16 38.6962 6.54899 28.5157 0.435486C32.977 6.48339 34.9496 13.8088 33.197 20.215C33.0407 20.7864 32.8528 21.3348 32.6451 21.8678C32.4197 21.7197 32.1357 21.5516 31.7543 21.3413C31.7543 21.3413 21.6274 15.0886 10.6515 4.02909C10.3635 3.73879 16.5043 12.8061 23.4734 20.169C20.19 18.3263 11.0396 11.6686 5.24683 6.36669C5.95853 7.55359 6.80503 8.69649 7.73553 9.79679C12.573 15.9317 18.8817 23.5012 26.4398 29.3137C21.1294 32.5635 13.6257 32.8162 6.15463 29.3171C4.30673 28.4511 2.56953 27.4062 0.961426 26.219C4.12393 31.2775 8.99463 35.6419 14.9227 38.1898C21.9922 41.2279 29.0223 41.0219 34.2583 38.2396L34.2542 38.2456C34.2781 38.2305 34.3085 38.214 34.3333 38.1987C34.5483 38.0831 34.7617 37.9654 34.9704 37.8411C37.4861 36.5353 42.4551 35.2105 45.1222 40.3999C45.7754 41.6699 47.1634 34.9395 42.0605 28.6607Z"
+                    fill="white" />
+            </svg>
+
+            SWIFT YR COUNTDOWN
+        </div>
+
+        <div class="action-bar">
+            <a href="/" class="ab-btn">GITHUB</a>
+            <!--<button class="ab-btn">SEARCH</button>-->
+            <div class="flex-space"></div>
+            <a class="ab-btn" href="https://himaji.xyz/">MAIN SITE</a>
+        </div>
+
+        <div class="win-contents">
+            <h1 id="countdown-txt">00:00:00:00</h1>
+            <p>New year countdown written in Swift (yes, swift on the web)</p>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,5 @@
+{
+    "name": "swift countdown",
+    "description": "new year countdown made in swift, that doesn't even work",
+    "pathoverride": "/swift-countdown/Bundle"
+}
