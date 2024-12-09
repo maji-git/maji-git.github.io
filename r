@@ -1,5 +1,6 @@
 {
     "tp": {
+        "status": "OFFLINE",
         "main": ""
     }
 }
